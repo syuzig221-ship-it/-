@@ -1,23 +1,128 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ում սիրում ես ինձ՞</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>💖</title>
+
+<style>
+  /* Գլխավոր կարգավորումներ */
+  body {
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Կենտրոնում տեղավորելու համար */
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+  }
+
+  #result {
+    margin-top: 30px;
+    font-size: 26px;
+    line-height: 1.5;
+    color: #fff;
+  }
+
+  #cat {
+    width: 150px;
+    margin-top: 20px;
+    display: none;
+    position: relative;
+  }
+
+  /* Սրտիկների ոճ */
+  .heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: fall 3s linear infinite, sway 2s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes fall {
+    0% { top: -30px; opacity: 1; }
+    100% { top: 100vh; opacity: 0; }
+  }
+
+  @keyframes sway {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(20px); }
+  }
+
+  /* Center content on phone screens */
+  @media (max-width: 600px) {
+    h1 { font-size: 28px; }
+    #result { font-size: 22px; }
+    #cat { width: 120px; }
+    button { font-size: 16px; padding: 12px 24px; }
+  }
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Դու սիրում ես ինձ՞</h1>
-        <img id="cat" src="https://www.freepik.com/premium-ai-image/adorable-cartoon-cat-with-big-green-eyes-pink-nose_308859846" alt="Cat">
-        <div class="buttons">
-            <button onclick="answer('yes')">Հա</button>
-            <button onclick="answer('love')">Առանց քեզ կյանք չունեմ</button>
-            <button onclick="answer('no')">Չէ</button>
-        </div>
-        <div id="message"></div>
-        <img id="heart" src="https://hy.wikipedia.org/wiki/%D5%8D%D5%AB%D6%80%D5%BF_%28%D5%AD%D5%B8%D6%80%D5%B0%D6%80%D5%A4%D5%A1%D5%B6%D5%AB%D5%B7%29" alt="Heart" class="hidden">
-    </div>
-    <script src="script.js"></script>
+
+<h1>Դու սիրում ես ինձ՞ 💖</h1>
+
+<button onclick="answer()">Հա</button>
+<button onclick="answer()">Առանց քեզ կյանք չունեմ</button>
+
+<div id="result"></div>
+
+<!-- Պարի կատու (gif) -->
+<img id="cat" src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif">
+
+<script>
+function answer() {
+  // Տեքստ
+  document.getElementById("result").innerHTML =
+    "Ես էլ քեզ եմ սիրում 💕😘<br>Դու իմ ամենասիրելի մարդն ես 💖💋<br>Իմ սիրտը միայն քեզ համար է ❤️";
+
+  // Կատուն ցույց տալ
+  const cat = document.getElementById("cat");
+  cat.style.display = "block";
+
+  // Սրտիկներ
+  setInterval(createHeart, 200);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.fontSize = 18 + Math.random() * 12 + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 3000);
+}
+</script>
+
 </body>
 </html>
